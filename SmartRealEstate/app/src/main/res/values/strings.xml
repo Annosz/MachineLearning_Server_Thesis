@@ -1,0 +1,93 @@
+<resources>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+
+    <string name="app_name">Smart Real Estate</string>
+
+    <string name="nav_header_title">Smart Real Estate</string>
+    <string name="nav_header_subtitle">Make your ads worth the most</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="nav_advanced">Advanced options</string>
+
+    <string name="welcome_text">Welcome to the Smart Real Estate application!</string>
+
+    <string name="form_title">Create a new advertisement for your house!</string>
+    <string name="form_county">County</string>
+    <string name="form_county_eg">eg. Budapest</string>
+    <string name="form_city">City</string>
+    <string name="form_city_eg">eg. Budapest XIII.</string>
+    <string name="form_orientation">Orientation</string>
+    <string name="form_postcode">Postcode</string>
+    <string name="form_property_type">Property type</string>
+    <string name="form_property_floor">Property floor</string>
+    <string name="form_building_floor_count">Building floor count</string>
+    <string name="form_property_condition_type">Property condition type</string>
+    <string name="form_view_type">View type</string>
+    <string name="form_garden_access">Garden access</string>
+    <string name="form_heating_type">Heating type</string>
+    <string name="form_elevator_type">Elevator type</string>
+    <string name="form_send">Create new Ad</string>
+    <string name="form_room_count">Room count</string>
+    <string name="form_small_room_count">Small room count</string>
+    <string name="form_property_area">Property area (square meters)</string>
+    <string name="form_balcony_area">Balcony area (square meters)</string>
+    <string name="form_price_created_at">Price (million HUF)</string>
+    <string name="form_adViewCount_on">This advertisement can expect %1$s views in the first two weeks of posting</string>
+    <string name="form_adViewCount_off">Enable AdViewCount server connection in settings to see how many view can this advertisement expect</string>
+    <string name="form_adViewCount_error">The server cannot determine the expected number of views for this advertisement (probably because of a network error).</string>
+
+    <string name="list_title">Properties posted</string>
+    <string name="list_own_title">Properties posted by you</string>
+    <string name="list_price_quantity">%1$s million HUF</string>
+
+    <string name="form_camera">Make a photo</string>
+    <string name="photo_permission_explanation">It is necessary for the application to have the permission to access the camera. This way you can make photos for your advertisement.</string>
+    <string name="rationale_dialog_title">Permission needed</string>
+    <string name="proceed">Proceed</string>
+    <string name="exit">Exit</string>
+
+    <string name="label_off">Off</string>
+    <string name="label_on">On</string>
+    <string name="settings_server">AdViewCount server</string>
+    <string name="settings_title">Settings</string>
+
+    <string-array name="Orientation">
+        <item></item>
+        <item>North</item>
+        <item>South</item>
+        <item>East</item>
+        <item>West</item>
+    </string-array>
+    <string-array name="PropertyType">
+        <item></item>
+        <item>flat</item>
+    </string-array>
+    <string-array name="PropertyConditionType">
+        <item></item>
+        <item>novel</item>
+        <item>renewed</item>
+        <item>good</item>
+        <item>to_be_renovated</item>
+    </string-array>
+    <string-array name="PropertyViewType">
+        <item></item>
+        <item>panoramic</item>
+        <item>street</item>
+        <item>garden view</item>
+        <item>courtyard view</item>
+    </string-array>
+    <string-array name="HeatingType">
+        <item></item>
+        <item>tile stove (gas)</item>
+        <item>konvection gas burner</item>
+        <item>central heating</item>
+        <item>central heating with own meter</item>
+        <item>district heating</item>
+        <item>gas furnace, circulating hot water</item>
+        <item>none</item>
+    </string-array>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

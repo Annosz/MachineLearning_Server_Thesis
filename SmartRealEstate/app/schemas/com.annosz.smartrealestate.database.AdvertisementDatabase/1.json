@@ -1,0 +1,153 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 1,
+    "identityHash": "6d11834637b7170fdfa1cd3e3dd23683",
+    "entities": [
+      {
+        "tableName": "advertisementData",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `county` TEXT NOT NULL, `city` TEXT NOT NULL, `postcode` INTEGER NOT NULL, `propertyType` TEXT NOT NULL, `propertySubtype` TEXT NOT NULL, `propertyConditionType` TEXT NOT NULL, `propertyFloor` INTEGER NOT NULL, `buildingFloorCount` INTEGER NOT NULL, `viewType` TEXT NOT NULL, `orientation` TEXT NOT NULL, `gardenAccess` INTEGER NOT NULL, `heatingType` TEXT NOT NULL, `elevatorType` INTEGER NOT NULL, `roomCount` INTEGER NOT NULL, `smallRoomCount` INTEGER NOT NULL, `propertyArea` REAL NOT NULL, `balconyArea` REAL NOT NULL, `priceCreatedAt` REAL NOT NULL, `creationDate` INTEGER NOT NULL, `modificationDate` INTEGER NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "county",
+            "columnName": "county",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "city",
+            "columnName": "city",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "postcode",
+            "columnName": "postcode",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "propertyType",
+            "columnName": "propertyType",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "propertySubtype",
+            "columnName": "propertySubtype",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "propertyConditionType",
+            "columnName": "propertyConditionType",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "propertyFloor",
+            "columnName": "propertyFloor",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "buildingFloorCount",
+            "columnName": "buildingFloorCount",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "viewType",
+            "columnName": "viewType",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "orientation",
+            "columnName": "orientation",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "gardenAccess",
+            "columnName": "gardenAccess",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "heatingType",
+            "columnName": "heatingType",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "elevatorType",
+            "columnName": "elevatorType",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "roomCount",
+            "columnName": "roomCount",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "smallRoomCount",
+            "columnName": "smallRoomCount",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "propertyArea",
+            "columnName": "propertyArea",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "balconyArea",
+            "columnName": "balconyArea",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "priceCreatedAt",
+            "columnName": "priceCreatedAt",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "creationDate",
+            "columnName": "creationDate",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "modificationDate",
+            "columnName": "modificationDate",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "id"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [],
+        "foreignKeys": []
+      }
+    ],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"6d11834637b7170fdfa1cd3e3dd23683\")"
+    ]
+  }
+}

@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    app:layout_constraintTop_toBottomOf="@id/app_bar"
+    tools:context=".fragments.AddHouseFragment">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintTop_toBottomOf="@id/app_bar"
+        android:layout_marginLeft="@dimen/form_margin"
+        android:layout_marginRight="@dimen/form_margin"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/form_title_margin_top"
+            android:layout_marginBottom="@dimen/form_title_margin_buttom"
+            android:text="@string/form_title"
+            android:textSize="@dimen/title_size"
+            android:textStyle="bold" />
+
+        <android.support.v7.widget.AppCompatImageView
+            android:id="@+id/FormImage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_menu_camera"
+            android:layout_marginTop="@dimen/form_camera_margin"
+            android:layout_marginBottom="@dimen/form_camera_margin"/>
+
+        <Button
+            android:id="@+id/FormCameraButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/form_camera_margin"
+            android:layout_marginBottom="@dimen/form_camera_margin"
+            android:onClick="onCameraButtonPressed"
+            android:text="@string/form_camera" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/form_text_space"
+            android:text="@string/form_county"
+            android:textSize="@dimen/form_text_size" />
+
+        <EditText
+            android:id="@+id/FormCounty"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/form_county_eg"
+            android:inputType="text" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/form_text_space"
+            android:text="@string/form_city"
+            android:textSize="@dimen/form_text_size" />
+
+        <EditText
+            android:id="@+id/FormCity"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/form_city_eg"
+            android:inputType="text" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/form_text_space"
+            android:text="@string/form_postcode"
+            android:textSize="@dimen/form_text_size" />
+
+        <EditText
+            android:id="@+id/FormPostcode"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:maxLength="4" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/form_text_space"
+            android:text="@string/form_property_type"
+            android:textSize="@dimen/form_text_size" />
+
+        <Spinner
+            android:id="@+id/FormPropertyType"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:entries="@array/PropertyType" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/form_text_space"
+            android:text="@string/form_property_condition_type"
+            android:textSize="@dimen/form_text_size" />
+
+        <Spinner
+            android:id="@+id/FormPropertyConditionType"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:entries="@array/PropertyConditionType" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/form_text_space"
+            android:text="@string/form_property_floor"
+            android:textSize="@dimen/form_text_size" />
+
+        <EditText
+            android:id="@+id/FormPropertyFloor"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:maxLength="2" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/form_text_space"
+            android:text="@string/form_building_floor_count"
+            android:textSize="@dimen/form_text_size" />
+
+        <EditText
+            android:id="@+id/FormBuildingFloorCount"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:maxLength="2" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/form_text_space"
+            android:text="@string/form_view_type"
+            android:textSize="@dimen/form_text_size" />
+
+        <Spinner
+            android:id="@+id/FormViewType"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:entries="@array/PropertyViewType" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/form_text_space"
+            android:text="@string/form_orientation"
+            android:textSize="@dimen/form_text_size" />
+
+        <Spinner
+            android:id="@+id/FormOrientation"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:entries="@array/Orientation" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/form_text_space"
+            android:text="@string/form_garden_access"
+            android:textSize="@dimen/form_text_size" />
+
+        <android.support.v7.widget.AppCompatCheckBox
+            android:id="@+id/FormGardenAccess"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/form_text_space"
+            android:text="@string/form_heating_type"
+            android:textSize="@dimen/form_text_size" />
+
+        <Spinner
+            android:id="@+id/FormHeatingType"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:entries="@array/HeatingType" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/form_text_space"
+            android:text="@string/form_elevator_type"
+            android:textSize="@dimen/form_text_size" />
+
+        <android.support.v7.widget.AppCompatCheckBox
+            android:id="@+id/FormElevatorType"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/form_text_space"
+            android:text="@string/form_room_count"
+            android:textSize="@dimen/form_text_size" />
+
+        <EditText
+            android:id="@+id/FormRoomCount"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:maxLength="2" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/form_text_space"
+            android:text="@string/form_small_room_count"
+            android:textSize="@dimen/form_text_size" />
+
+        <EditText
+            android:id="@+id/FormSmallRoomCount"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:maxLength="2" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/form_text_space"
+            android:text="@string/form_property_area"
+            android:textSize="@dimen/form_text_size" />
+
+        <EditText
+            android:id="@+id/FormPropertyArea"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal"
+            android:maxLength="6" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/form_text_space"
+            android:text="@string/form_balcony_area"
+            android:textSize="@dimen/form_text_size" />
+
+        <EditText
+            android:id="@+id/FormBalconyArea"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal"
+            android:maxLength="6" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/form_text_space"
+            android:text="@string/form_price_created_at"
+            android:textSize="@dimen/form_text_size" />
+
+        <EditText
+            android:id="@+id/FormPriceCreatedAt"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal"
+            android:maxLength="6" />
+
+        <TextView
+            android:id="@+id/form_AdViewCount_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/form_title_margin_top"
+            android:layout_marginBottom="@dimen/form_title_margin_buttom"
+            android:textSize="@dimen/title_size"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/FormButtonSend"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/form_button_margin"
+            android:onClick="onAddButtonPressed"
+            android:text="@string/form_send" />
+
+    </LinearLayout>
+
+</ScrollView>

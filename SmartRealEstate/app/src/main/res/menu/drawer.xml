@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_welcome"
+            android:icon="@drawable/ic_business_center"
+            android:title="Welcome" />
+        <item
+            android:id="@+id/nav_explore"
+            android:icon="@drawable/ic_explore"
+            android:title="Explore houses" />
+        <item
+            android:id="@+id/nav_create"
+            android:icon="@drawable/ic_home"
+            android:title="Create new advertisement" />
+        <item
+            android:id="@+id/nav_own"
+            android:icon="@drawable/ic_book"
+            android:title="Own houses" />
+    </group>
+
+    <item android:title="@string/nav_advanced">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/nav_settings"
+                    android:icon="@drawable/ic_build"
+                    android:title="Settings" />
+                <item
+                    android:id="@+id/nav_contact"
+                    android:icon="@drawable/ic_alternate_email"
+                    android:title="Contact" />
+            </group>
+        </menu>
+    </item>
+
+</menu>

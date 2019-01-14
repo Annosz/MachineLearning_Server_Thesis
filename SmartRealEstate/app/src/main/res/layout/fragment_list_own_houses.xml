@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.ListOwnHousesFragment"
+    tools:showIn="@layout/app_bar">
+
+    <LinearLayout
+        android:id="@+id/list_own_houses_menu"
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintTop_toBottomOf="@id/app_bar"
+        android:layout_marginLeft="@dimen/form_margin"
+        android:layout_marginRight="@dimen/form_margin"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/list_title_margin_top"
+            android:layout_marginBottom="@dimen/list_title_margin_buttom"
+            android:text="@string/list_own_title"
+            android:textSize="@dimen/title_size"
+            android:textStyle="bold" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/list_own_houses_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
+
+</FrameLayout>
