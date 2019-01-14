@@ -1,27 +1,16 @@
-# Machine Learning Server Thesis
-Repository for my thesis 'Gépi tanulási szerver szolgáltatás fejlesztése'
-
-'A gépi tanulási módszerek, mély neurális hálózatok kutatási területeken már nagyon népszerű
-témák, az ipari projektekbe való integrálhatóságot viszont jelentősen akadályozza az a tény,
-hogy a kutatások főleg scriptnyelveken (főleg Python) történnek, ami a végfelhasználók
-számára megnehezíti a felhasználást és a nagyobb szoftver rendszerekbe történő
-integrálhatóságot.
-A jelölt feladata egy olyan szerver szolgáltatás megtervezése és megvalósítása, mely a
-felhasználó barát kliens alkalmazásokból (például .NET környezetből) könnyen használható és
-alkalmas a gépi tanulási feladatok távoli elvégzésére, mint amilyen a tanítás és a kiértékelési
-feladatok.
-A jelölt feladata az alábbiakra terjed ki:
-* Gyűjtse össze a várhatóan a szolgáltatással szemben támasztott igényeket, rendszerezze
-azokat és válassza ki a megvalósított részhalmazt.
-* Törekedjen a minél könnyebb konfigurálhatóságra, kiegészíthetőségre, mivel a gépi
-tanulási módszerek tényleges megvalósításához valószínűleg a szerver oldalt is gyakran
-ki kell majd egészíteni.
-* Válasszon ki két alkalmazási területet, melyeken keresztül demonstrálja a szolgáltatás
-használatának módját és elvégzi a teljesítményre vonatkozó értékelő méréseket.
-* Valósítsa meg a két kiválasztott területhez a szolgáltatás integrációjához szükséges
-kliens oldali implementációt.
-* Törekedjen az áttekinthető, tervezési mintákat felhasználó, unit tesztekkel támogatott
-implementációra.'
-
-## Structure
-This repository consists of different branches, each containing one element of my thesis work.
+# Smart Real Estate
+## Bemutatás
+Nagyon sokan vannak az online hirdető portálokon, akik nem tudnak egy jó, csábító hirdetést összerakni: ez különösen akkor hátrányos, ha egy nagy értékű tételről, például egy lakásról van szó. Ezért egy olyan alkalmazást készítek, ami egy online ingatlanértékesítő portál hirdetésfeladó mobilalkalmazását szimulálja, mely képes arra, hogy megjósolja, hány megtekintést fog elérni a feladott hirdetésünk.
+## Főbb funkciók
+Az alkalmazásba a felhasználó képes új lakás hirdetését létrehozni, az adatokat megadva és a képeket a telefonjáról kiböngészve.
+Az alkalmazás a hirdetés létrehozása közben egy szerver REST végpontjával kommunikál, ami képes megmondani, hogy a jelenlegi kitöltöttség alapján hány megtekintésre számíthat a hirdető. Ez a funkció a beállítások közt kikapcsolható.
+Az alkalmazás lokálisan tárolja az általunk létrehozott hirdetéseket, ezek közt böngészni lehet és módosításokat, törléseket végezni.
+Az alkalmazás néha tippekkel látja el a felhasználót, hogy hogyan növelhetné a hirdetés által elért felhasználókat.
+(A hirdetések online feltöltése egyelőre nem valósul meg, ezeknek a funkcióknak legfeljebb placeholderek kerülnek be az alkalmazásba.)
+## Technológiák
+*	**UI**: Az alkalmazás felhasználói felülete: Activity-k, Fragmentek indítására.
+*	**Recyclerview**: Az alkalmazás RecyclerView segítségével jeleníti meg a feltöltött hirdetések listáját.
+*	**Hálózatkezelés**: Az alkalmazás egy saját szerverrel kommunikál és REST végponton keresztül küldi el a hirdetés adatait és kapja vissza a várható látogatószámot.
+*	**Adatbáziskezelés**: A felhasználó elmenti a feladott hirdetéseket lokálisan.
+*	**Notificationök**: Az alkalmazás néha értesítéseket küld arról, hogy hogyan lehetne növelni a hirdetéssel elért emberek számát.
+*	**Kamerahasználat**: A felhasnzálónak lehetősége van a feltöltésből a fényképező alkalmazást indítani és azzal képeket csinálni az ingatlanról.
