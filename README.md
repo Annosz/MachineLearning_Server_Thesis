@@ -1,5 +1,5 @@
 # Machine Learning Server Thesis
-#### Repository for my thesis 'Gépi tanulási szerver szolgáltatás fejlesztése'
+Repository for my thesis 'Gépi tanulási szerver szolgáltatás fejlesztése'
 
 <br>
 
