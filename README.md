@@ -25,3 +25,4 @@ implementációra.'
 
 ## Structure
 This repository consists of different branches, each containing one element of my thesis work.
+* SmartRealEstate: The mobile application that uses the endpoints offered by the AdViewCount Server
