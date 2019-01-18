@@ -1,5 +1,4 @@
-# Livepoly_Server
-## Marketing_Ad_View_Server
+# AdViewCount Server
 
 This branch contains a beginner implementation of a machine learning
 server.
