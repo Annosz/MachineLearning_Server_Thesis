@@ -25,4 +25,5 @@ implementációra.'
 
 ## Structure
 This repository consists of different branches, each containing one element of my thesis work.
+* AdViewCount Server: A server side machine learning application, used to predict different real estate advertisement's potential view count
 * SmartRealEstate: The mobile application that uses the endpoints offered by the AdViewCount Server
