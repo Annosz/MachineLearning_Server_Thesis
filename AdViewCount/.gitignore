@@ -1,7 +1,6 @@
 # Other files to ignore
 .idea/
 env_marketing/
-models/
 data/prediction.csv
 
 # Byte-compiled / optimized / DLL files
