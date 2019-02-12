@@ -18,8 +18,7 @@ def train():
         except ValueError:
             raise InvalidUsage('Not a valid json body for train request', status_code=400)
     try:
-        RMSE = adviewcount.train_ml(df, train_test_ratio=0.8, n_estimators=5)
-        return "RMSE of Ad_View_Count Server: " + str(RMSE)
+        return('HI')
     except Exception:
         raise InvalidUsage('Exception during the training process', status_code=500)
 
