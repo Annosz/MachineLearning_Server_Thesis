@@ -12,6 +12,7 @@ def train():
     if request.method == 'POST':
         try:
             data = request.get_json()
+            print(data)
             df = pd.read_json(data, orient="records")
             if df.empty:
                 raise InvalidUsage('Empty json received as train data', status_code=400)
