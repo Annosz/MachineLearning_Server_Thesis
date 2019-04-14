@@ -1,16 +1,22 @@
 import cv2
 
+VIDEO_PATH = "C:\\Users\\Annosz\\Documents\\GitHub\\MachineLearning_Server_Thesis\\data\\out.mp4"
 
-# Function to extract frames
-def FrameCapture(path):
-    vidObj = cv2.VideoCapture(path)
 
+def FrameCapture():
     extractedImages = list()
-    count = 0
-    success = 1
 
+    vidObj = cv2.VideoCapture(VIDEO_PATH)
+
+    success = 1
     while success:
         success, image = vidObj.read()
         extractedImages.append(image)
 
-    print(extractedImages.count())
+    return extractedImages
+
+
+def ReadTeachingInput():
+    imageList = FrameCapture()
+
+    print(len(imageList))
