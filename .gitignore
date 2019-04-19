@@ -1,7 +1,8 @@
 # Other files to ignore
 .idea/
-env_marketing/
 data/
+env_marketing/
+data/prediction.csv
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
