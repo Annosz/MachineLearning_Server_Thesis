@@ -1,13 +1,13 @@
 import adviewcount
 import pandas as pd
+import time
 
 
 df = pd.read_csv("data/training.csv")
 
-print(df.head())
-adviewcount.clear_dataframe(df)
+start = time.time()
+rmse = adviewcount.train_ml(df, True, 0.8, 20, 0.1, 4)
+end = time.time()
 
-#rmse = adviewcount.train_ml(df, 0.8, 500, 0.05, 7)
-
-#print(rmse)
-
+print("Time of training: " + str(end - start))
+print("RMSE: " + str(rmse))
