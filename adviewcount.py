@@ -137,14 +137,13 @@ def create_sklearn_model(x_train, y_train, n_estimators, learning_rate, max_dept
 
 
 def make_input_fn(x, y, n_epochs=None, shuffle=True):
-    NUM_EXAMPLES = len(y)
 
     def input_fn():
         dataset = tf.data.Dataset.from_tensor_slices((dict(x), y))
         if shuffle:
-          dataset = dataset.shuffle(NUM_EXAMPLES)
+            dataset = dataset.shuffle(len(y))
         dataset = dataset.repeat(n_epochs)
-        dataset = dataset.batch(NUM_EXAMPLES)
+        dataset = dataset.batch(len(y))
         return dataset
 
     return input_fn
@@ -155,7 +154,7 @@ def evaluate_tf_model(test, input_features, target, gb):
         x_test = test[input_features]
         y_test = test[target]
 
-        eval_input_fn = make_input_fn(x_test, y_test, shuffle=False, n_epochs=1)
+        eval_input_fn = make_input_fn(x_test, y_test, n_epochs=1, shuffle=False)
         preds = gb.predict(eval_input_fn)
         predictions = np.array([item['predictions'][0] for item in preds])
         yhat_test = pd.Series(predictions, index=y_test.index)
@@ -180,7 +179,7 @@ def create_tf_model(x_train, y_train, input_features, n_estimators, learning_rat
         learning_rate=learning_rate
     )
 
-    gb.train(train_input_fn, max_steps=100)
+    gb.train(train_input_fn)
 
     # joblib.dump(gb, "models/gradient_boosting_model.pkl")
 
