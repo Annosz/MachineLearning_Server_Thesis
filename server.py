@@ -2,6 +2,7 @@ from flask import Flask, request, jsonify
 import pandas as pd
 import adviewcount
 from invalidusage import InvalidUsage
+import threading
 
 app = Flask(__name__)
 
@@ -9,6 +10,9 @@ app = Flask(__name__)
 @app.route("/train", methods=['GET', 'POST'])
 def train():
     df = None
+    n_estimators = request.args.get('n_estimators')
+    learning_rate = request.args.get('learning_rate')
+    max_depth = request.args.get('max_depth')
     if request.method == 'POST':
         try:
             data = request.get_json()
@@ -19,10 +23,17 @@ def train():
         except ValueError:
             raise InvalidUsage('Not a valid json body for train request', status_code=400)
     try:
-        RMSE = adviewcount.train_ml(df, train_test_ratio=0.8, n_estimators=5)
-        return "RMSE of Ad_View_Count Server: " + str(RMSE)
+        trainingThread = threading.Thread(target=adviewcount.train_ml, args=(df, False, n_estimators, learning_rate, max_depth))
+        trainingThread.start()
+        # adviewcount.train_ml(df, use_tf=False, n_estimators=n_estimators, learning_rate=learning_rate, max_depth=max_depth)
+        return "Training started"
     except Exception:
         raise InvalidUsage('Exception during the training process', status_code=500)
+
+
+@app.route("/model_ready", methods=['GET'])
+def model_ready():
+    return str(adviewcount.model_ready)
 
 
 @app.route("/predict", methods=['GET', 'POST'])

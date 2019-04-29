@@ -8,6 +8,9 @@ from math import sqrt
 
 import tensorflow as tf
 
+
+model_ready = False
+
 # --------------------------------------------------------
 # Data preparation steps.
 
@@ -123,15 +126,18 @@ def evaluate_sklearn_model(test, input_features, target, gb):
     return 0
 
 
-def create_sklearn_model(x_train, y_train, n_estimators, learning_rate, max_depth, random_state):
+def create_sklearn_model(x_train, y_train, n_estimators, learning_rate, max_depth):
+    global model_ready
+    model_ready = False
+
     gb = GradientBoostingRegressor(
         n_estimators=n_estimators,
         learning_rate=learning_rate,
-        max_depth=max_depth,
-        random_state=random_state)
+        max_depth=max_depth)
     gb = gb.fit(x_train, y_train)
 
     joblib.dump(gb, "models/gradient_boosting_model.pkl")
+    model_ready = True
 
     return gb
 
@@ -186,9 +192,21 @@ def create_tf_model(x_train, y_train, input_features, n_estimators, learning_rat
     return gb
 
 
-def train_ml(df=None, use_tf=False, train_test_ratio=1.0, n_estimators=500, learning_rate=0.07, max_depth=7, random_state=431):
+def train_ml(df, use_tf, n_estimators, learning_rate, max_depth):
 
-    # Reading data
+    if n_estimators is None:
+        n_estimators = 500
+    else:
+        n_estimators = int(n_estimators)
+    if learning_rate is None:
+        learning_rate = 0.07
+    else:
+        learning_rate = float(learning_rate)
+    if max_depth is None:
+        max_depth = 7
+    else:
+        max_depth = int(max_depth)
+
     if df is None:
         df = pd.read_csv("data/training.csv")
     df = clear_dataframe(df)
@@ -201,24 +219,15 @@ def train_ml(df=None, use_tf=False, train_test_ratio=1.0, n_estimators=500, lear
 
     joblib.dump(input_features, "models/input_features.pkl")
 
-    # Train-test split
-    train = None
-    test = None
-    if train_test_ratio < 1.0:
-        train, test = train_test_split(df, train_size=train_test_ratio, test_size=(1.0 - train_test_ratio), random_state=42)
-    else:
-        train = df
-
+    train = df
     x_train = train[input_features]
     y_train = train[target]
 
     # Gradient Boosting
     if use_tf:
-        gb = create_tf_model(x_train, y_train, input_features, n_estimators, learning_rate, max_depth)
-        return evaluate_tf_model(test, input_features, target, gb)
+        create_tf_model(x_train, y_train, input_features, n_estimators, learning_rate, max_depth)
     else:
-        gb = create_sklearn_model(x_train, y_train, n_estimators, learning_rate, max_depth, random_state)
-        return evaluate_sklearn_model(test, input_features, target, gb)
+        create_sklearn_model(x_train, y_train, n_estimators, learning_rate, max_depth)
 
 
 # --------------------------------------------------------
@@ -233,9 +242,6 @@ def predict_ml(df_test=None):
     if df_test is None:
         df_test = pd.read_csv("data/testing.csv")
     df_test = clear_dataframe(df_test)
-
-    # Choose features
-    target = 'ad_view_cnt'
 
     # Features
     X_test = df_test[input_features]
