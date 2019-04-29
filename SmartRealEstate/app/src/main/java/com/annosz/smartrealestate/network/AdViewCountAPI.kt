@@ -41,7 +41,7 @@ class AdViewCountAPI {
 
         //The execute call blocks the thread
         val response = client.newCall(request).execute()
-        return response.body()?.string() ?: "EMPTY"
+        return response.body()?.string() ?: ""
     }
 
     fun getView(ad: AdvertisementData): Int {
@@ -69,7 +69,7 @@ class AdViewCountAPI {
                 }""".trimIndent()
 
             var response = httpPost(BASE_URL + "predict",json)
-            if (response == "EMPTY")
+            if (response == "")
             {
                 -1
             }
