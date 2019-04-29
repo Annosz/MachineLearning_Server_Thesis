@@ -23,9 +23,7 @@ def train():
         except ValueError:
             raise InvalidUsage('Not a valid json body for train request', status_code=400)
     try:
-        trainingThread = threading.Thread(target=adviewcount.train_ml, args=(df, False, n_estimators, learning_rate, max_depth))
-        trainingThread.start()
-        # adviewcount.train_ml(df, use_tf=False, n_estimators=n_estimators, learning_rate=learning_rate, max_depth=max_depth)
+        adviewcount.train_ml(df, use_tf=False, n_estimators=n_estimators, learning_rate=learning_rate, max_depth=max_depth)
         return "Training started"
     except Exception:
         raise InvalidUsage('Exception during the training process', status_code=500)

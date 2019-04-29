@@ -1,10 +1,10 @@
 import pandas as pd
 import numpy as np
-from sklearn.model_selection import train_test_split
 from sklearn.ensemble import GradientBoostingRegressor
 from sklearn.metrics import mean_squared_error
 from sklearn.externals import joblib
 from math import sqrt
+import threading
 
 import tensorflow as tf
 
@@ -225,9 +225,11 @@ def train_ml(df, use_tf, n_estimators, learning_rate, max_depth):
 
     # Gradient Boosting
     if use_tf:
-        create_tf_model(x_train, y_train, input_features, n_estimators, learning_rate, max_depth)
+        trainingThread = threading.Thread(target=create_tf_model, args=(x_train, y_train, input_features, n_estimators, learning_rate, max_depth))
+        trainingThread.start()
     else:
-        create_sklearn_model(x_train, y_train, n_estimators, learning_rate, max_depth)
+        trainingThread = threading.Thread(target=create_sklearn_model, args=(x_train, y_train, n_estimators, learning_rate, max_depth))
+        trainingThread.start()
 
 
 # --------------------------------------------------------
