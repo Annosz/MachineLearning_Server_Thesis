@@ -19,11 +19,11 @@ def create_model(lr):
     model = keras.Sequential()
     model.add(keras.layers.Conv3D(32, kernel_size=(3, 3, 3), activation='relu', padding='same', input_shape=(1, IMG_HEIGHT, IMG_WIDTH, 1)))
     model.add(keras.layers.Conv3D(32, kernel_size=(3, 3, 3), activation='relu', padding='same'))
-    model.add(keras.layers.MaxPooling3D(pool_size=(2, 2, 1), padding='same'))
+    model.add(keras.layers.MaxPooling3D(pool_size=(2, 2, 2), padding='same'))
     model.add(keras.layers.Dropout(0.25))
     model.add(keras.layers.Conv3D(64, kernel_size=(3, 3, 3), activation='relu', padding='same'))
     model.add(keras.layers.Conv3D(64, kernel_size=(3, 3, 3), activation='relu', padding='same'))
-    model.add(keras.layers.MaxPooling3D(pool_size=(2, 2, 1), padding='same'))
+    model.add(keras.layers.MaxPooling3D(pool_size=(2, 2, 2), padding='same'))
     model.add(keras.layers.Dropout(0.25))
     model.add(keras.layers.Flatten())
     model.add(keras.layers.Dense(256, activation='relu'))
@@ -69,16 +69,13 @@ def train_nn(testing):
     model = create_model(0.1)
 
     if testing:
-        history = model.fit(dataset, epochs=100, steps_per_epoch=1, validation_split=0.2)
+        history = model.fit(dataset, epochs=100, steps_per_epoch=1)
 
-        print(history.history.keys())
-        # "Loss"
-        plt.plot(history.history['loss'])
-        plt.plot(history.history['val_loss'])
+        plt.plot(history.history['loss'][5:100])
         plt.title('model loss')
         plt.ylabel('loss')
         plt.xlabel('epoch')
-        plt.legend(['train', 'validation'], loc='upper left')
+        plt.legend(['validation'], loc='upper left')
         plt.show()
 
     else:
