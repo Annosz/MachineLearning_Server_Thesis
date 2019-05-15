@@ -3,27 +3,29 @@ import tensorflow as tf
 from tensorflow import keras
 import pandas as pd
 import matplotlib.pyplot as plt
+from dateutil import parser
 
 from itertools import compress
 
 
 TRAIN_FOLDER = "C:\\Users\\Annosz\\Documents\\GitHub\\MachineLearning_Server_Thesis\\train\\"
 DATA_FOLDER = "C:\\Users\\Annosz\\Documents\\GitHub\\MachineLearning_Server_Thesis\\data\\"
+MODEL_FOLDER = "C:\\Users\\Annosz\\Documents\\GitHub\\MachineLearning_Server_Thesis\\models\\"
 
 IMG_HEIGHT = 250
 IMG_WIDTH = 50
 
 
-def create_model(lr):
+def create_model():
 
     model = keras.Sequential()
-    model.add(keras.layers.Conv3D(32, kernel_size=(3, 3, 3), activation='relu', padding='same', input_shape=(1, IMG_HEIGHT, IMG_WIDTH, 1)))
-    model.add(keras.layers.Conv3D(32, kernel_size=(3, 3, 3), activation='relu', padding='same'))
-    model.add(keras.layers.MaxPooling3D(pool_size=(2, 2, 2), padding='same'))
+    model.add(keras.layers.Conv3D(32, kernel_size=(9, 9, 9), strides=(3, 3, 3), activation='relu', padding='same', input_shape=(1, IMG_HEIGHT, IMG_WIDTH, 1)))
+    model.add(keras.layers.Conv3D(32, kernel_size=(9, 9, 9), strides=(3, 3, 3), activation='relu', padding='same'))
+    model.add(keras.layers.MaxPooling3D(pool_size=(3, 3, 3), padding='same'))
     model.add(keras.layers.Dropout(0.25))
-    model.add(keras.layers.Conv3D(64, kernel_size=(3, 3, 3), activation='relu', padding='same'))
-    model.add(keras.layers.Conv3D(64, kernel_size=(3, 3, 3), activation='relu', padding='same'))
-    model.add(keras.layers.MaxPooling3D(pool_size=(2, 2, 2), padding='same'))
+    model.add(keras.layers.Conv3D(64, kernel_size=(9, 9, 9), strides=(3, 3, 3), activation='relu', padding='same'))
+    model.add(keras.layers.Conv3D(64, kernel_size=(9, 9, 9), strides=(3, 3, 3), activation='relu', padding='same'))
+    model.add(keras.layers.MaxPooling3D(pool_size=(3, 3, 3), padding='same'))
     model.add(keras.layers.Dropout(0.25))
     model.add(keras.layers.Flatten())
     model.add(keras.layers.Dense(256, activation='relu'))
@@ -36,15 +38,17 @@ def create_model(lr):
     return model
 
 
-def train_nn(testing):
+def get_picture_data(num = -1):
     df = pd.read_csv(DATA_FOLDER + 'WeightFromScale.txt', delimiter='\t', decimal=",")
 
-    train_labels = df["WeightFromScale [g]"].diff()
+    train_labels = df["WeightFromScale [g]"][0:num].diff()
+    first_timestamp = parser.parse(df["Time"][0])
+    time_labels = pd.to_datetime(df["Time"][0:num]) - first_timestamp
 
     train_groups = []
     shape_mask = []
     last_frame_num = 1
-    for i in df["FrameNumber"]:
+    for i in df["FrameNumber"][0:num]:
         train_imgs = []
 
         for j in range(last_frame_num, i):
@@ -63,10 +67,15 @@ def train_nn(testing):
         shape_mask.append(len(train_imgs) == 12)
         last_frame_num = i
 
-    dataset = tf.data.Dataset.from_tensor_slices(
-        (list(compress(train_groups, shape_mask)), train_labels[shape_mask]))
+    return list(compress(train_groups, shape_mask)), train_labels[shape_mask], time_labels[shape_mask]
 
-    model = create_model(0.1)
+
+def train_nn(testing):
+    train_groups, train_labels, _ = get_picture_data()
+
+    dataset = tf.data.Dataset.from_tensor_slices((train_groups, train_labels))
+
+    model = create_model()
 
     if testing:
         history = model.fit(dataset, epochs=100, steps_per_epoch=1)
@@ -80,3 +89,9 @@ def train_nn(testing):
 
     else:
         model.fit(dataset, epochs=100, steps_per_epoch=1)
+
+    tf.keras.models.save_model(model,  MODEL_FOLDER + "PharmaNN")
+
+def predict(pics, model):
+    result = model.predict(pics, steps=1)
+    return result
