@@ -14,12 +14,14 @@ def get_local_prediction(test_group):
 
 def get_remote_prediction(test_group):
     sess = tf.InteractiveSession()
-    return requests.post("http://127.0.0.1:5000/predict", json=json.dumps(test_group.eval().tolist()))
+    return requests.post("http://pharmaweight.herokuapp.com/predict", json=json.dumps(test_group.eval().tolist()))
+    #return requests.post("http://127.0.0.1:5000/predict", json=json.dumps(test_group.eval().tolist()))
 
 
 if __name__ == '__main__':
     #nn_impl.train_nn(False)
     #requests.get("http://127.0.0.1:5000/train")
+    #requests.get("http://pharmaweight.herokuapp.com/train")
 
     test_groups, weight_labels, time_labels = nn_impl.get_picture_data()
     weight_labels = weight_labels.tolist()
