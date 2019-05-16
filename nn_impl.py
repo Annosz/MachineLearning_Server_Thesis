@@ -15,6 +15,8 @@ MODEL_FOLDER = "C:\\Users\\Annosz\\Documents\\GitHub\\MachineLearning_Server_The
 IMG_HEIGHT = 250
 IMG_WIDTH = 50
 
+model_ready = False
+model = None
 
 def create_model():
 
@@ -71,10 +73,13 @@ def get_picture_data(num = -1):
 
 
 def train_nn(testing):
+    model_ready = False
+
     train_groups, train_labels, _ = get_picture_data()
 
     dataset = tf.data.Dataset.from_tensor_slices((train_groups, train_labels))
 
+    global model
     model = create_model()
 
     if testing:
@@ -92,6 +97,17 @@ def train_nn(testing):
 
     tf.keras.models.save_model(model,  MODEL_FOLDER + "PharmaNN")
 
-def predict(pics, model):
+    model_ready = True
+
+
+def is_model_ready():
+    return model_ready
+
+
+def predict(pics):
+    global model
+    if model is None:
+        model = tf.keras.models.load_model(MODEL_FOLDER + "PharmaNN")
+
     result = model.predict(pics, steps=1)
     return result
