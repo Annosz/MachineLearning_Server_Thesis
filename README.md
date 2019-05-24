@@ -1,4 +1,4 @@
-# AdViewCount Server
+# PharmaWeight Server
 
 This branch contains the implementation of a machine learning
 server.
